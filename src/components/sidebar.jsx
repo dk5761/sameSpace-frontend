@@ -8,10 +8,7 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "../components/ui/sheet";
 
@@ -36,7 +33,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <nav className="w-screen sm:w-1/4  sm:min-w-[200px] sm:max-w-[280px] sm:h-screen sm:p-6  p-2 h-[50px] bg-black flex flex-row sm:flex-col justify-between items-start sm:justify-normal sm:items-start">
+    <nav className="w-full sm:w-1/4 sm:min-w-[200px] sm:max-w-[280px] sm:h-screen sm:p-6  p-2 h-[50px] bg-black flex flex-row sm:flex-col justify-between items-start sm:justify-normal sm:items-start fixed sm:relative">
       <Sheet key={"left"}>
         <SheetTrigger asChild>
           <img
