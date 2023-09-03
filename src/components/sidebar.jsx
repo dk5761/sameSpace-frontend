@@ -11,29 +11,40 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "../components/ui/sheet";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
 
-const Sidebar = () => {
-  const data = [
-    {
-      id: 1,
-      title: "For You",
-    },
-    {
-      id: 2,
-      title: "Top Tracks",
-    },
-    {
-      id: 3,
-      title: "Favourites",
-    },
-    {
-      id: 4,
-      title: "Recently Played",
-    },
-  ];
+const Sidebar = ({ data }) => {
+  const controls = useAnimation();
+
+  // Check if the screen width is less than or equal to 768px (typical mobile breakpoint)
+  const isMobile = window.innerWidth <= 768;
+
+  // Initial animation when the component mounts
+  useEffect(() => {
+    if (isMobile) {
+      // Apply mobile-specific animation with y manipulation
+      controls.start({ y: 0, opacity: 1 });
+    } else {
+      // Apply desktop-specific animation with x manipulation
+      controls.start({ x: 0, opacity: 1 });
+    }
+  }, [isMobile, controls]);
 
   return (
-    <nav className="w-full sm:w-1/4 sm:min-w-[200px] sm:max-w-[280px] sm:h-screen sm:p-6  p-2 h-[50px] bg-black flex flex-row sm:flex-col justify-between items-start sm:justify-normal sm:items-start fixed sm:relative">
+    <motion.nav
+      className="w-full sm:w-1/4 sm:min-w-[200px] sm:max-w-[280px] sm:h-screen sm:p-6  p-2 h-[50px]  flex flex-row sm:flex-col justify-between items-start sm:justify-normal sm:items-start fixed sm:relative"
+      initial={
+        isMobile ? { y: "-100%", opacity: 0 } : { x: "-100%", opacity: 0 }
+      }
+      transition={{
+        type: "tween",
+        damping: 15,
+        stiffness: 80,
+        duration: 0.6,
+      }}
+      animate={controls}
+    >
       <Sheet key={"left"}>
         <SheetTrigger asChild>
           <img
@@ -50,10 +61,10 @@ const Sidebar = () => {
             <img src={Spotify_LG} alt="Logo" className="h-[36px] mb-4 w-max" />
           </SheetHeader>
           <aside className="flex flex-col ">
-            {data.map((item) => {
+            {data.getPlaylists.map((item) => {
               return (
-                <SheetClose asChild>
-                  <Link to={`/${item.id}`}>
+                <SheetClose asChild key={item.id}>
+                  <Link to={`/${item.id}`} state={{ title: item.title }}>
                     <Label>{item.title}</Label>
                   </Link>
                 </SheetClose>
@@ -70,15 +81,15 @@ const Sidebar = () => {
       />
 
       <aside className="hidden sm:block">
-        {data.map((item) => {
+        {data.getPlaylists.map((item) => {
           return (
-            <Link>
+            <Link to={`/${item.id}`} key={item.id}>
               <Label>{item.title}</Label>
             </Link>
           );
         })}
       </aside>
-    </nav>
+    </motion.nav>
   );
 };
 

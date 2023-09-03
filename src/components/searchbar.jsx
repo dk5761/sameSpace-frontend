@@ -1,13 +1,21 @@
 import React from "react";
 import SearchIcon from "../assets/search.svg";
+import { cn } from "../lib/utils";
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, loading, placeholder }) => {
   return (
-    <div className="flex items-center justify-center m-4 rounded-md overflow-hidden bg-white bg-opacity-50 ">
+    <div
+      className={cn(
+        "flex items-center justify-center m-4 rounded-md overflow-hidden bg-white bg-opacity-25 ",
+        loading ? "pointer-events-none  " : "pointer-events-auto"
+      )}
+    >
       <input
         type="text"
-        placeholder="Search..."
-        className=" px-4 py-2 w-full focus:outline-none focus:border-blue-500 border-none rounded-md bg-transparent text-white placeholder-white placeholder-opacity-50"
+        placeholder={placeholder}
+        className={cn(
+          " px-4 py-2 w-full focus:outline-none focus:border-blue-500 border-none rounded-md bg-transparent text-white placeholder-white placeholder-opacity-50"
+        )}
         onChange={(e) => onSearch(e.target.value)}
       />
       <img
