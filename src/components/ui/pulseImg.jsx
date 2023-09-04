@@ -7,6 +7,7 @@ const PulseImage = ({ imageUrl, className }) => {
     <motion.div
       animate={{ opacity: [0.2, 1, 0.2] }}
       transition={{ duration: 3, repeat: Infinity }}
+      className="w-[60px]"
     >
       <img
         src={imageUrl}
