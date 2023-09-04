@@ -37,17 +37,20 @@ const songSlice = createSlice({
     },
     prevSong: (state) => {
       const cState = current(state);
-
       const idx = getIdx(cState.songList, cState.selectedSong._id);
-
-      state.selectedSong = state.songList[idx > 0 ? idx - 1 : idx];
+      const count = cState.songList.length - 1;
+      state.selectedSong = state.songList[idx > 0 ? idx - 1 : count];
+      // we could also stop at the first song
+      // state.selectedSong = state.songList[idx > 0 ? idx - 1 : idx];
     },
 
     nextSong: (state) => {
       const cState = current(state);
       const idx = getIdx(cState.songList, cState.selectedSong._id);
-
-      state.selectedSong = state.songList[idx + 1];
+      const count = cState.songList.length - 1;
+      state.selectedSong = state.songList[idx == count ? 0 : idx + 1];
+      // we could also stop at the last song
+      // state.selectedSong = state.songList[idx == count ? idx : idx + 1];
     },
   },
   extraReducers: (builder) => {
