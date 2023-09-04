@@ -22,7 +22,7 @@ const App = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col sm:flex-row h-screen w-screen max-h-screen overflow-hidden relative bg-black justify-center items-center">
+      <div className="flex flex-row  h-screen w-screen max-h-screen overflow-hidden relative bg-black justify-center items-center">
         <PulseImage imageUrl={Spotify_XS} className={"h-[60px]"} />
       </div>
     );
