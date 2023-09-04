@@ -53,7 +53,7 @@ const Home = ({ headerData, headerLoading }) => {
         {headerLoading && !headerData.getPlaylists.length >= 1 ? (
           <div className="sm:h-[60px]" />
         ) : (
-          <div className=" font-bold text-3xl flex px-4 text-white pb-0 pt-6">
+          <div className=" font-bold text-3xl flex px-4 text-white pb-0 sm:pt-6">
             {id ? (
               <h1>
                 {headerData?.getPlaylists.find((item) => item.id == id).title}

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Label from "./ui/text";
 import { Link } from "react-router-dom";
-import Spotify_LG from "../assets/spotify_lg.svg";
-import Spotify_XS from "../assets/spotify_xs.svg";
-import Hamburger from "../assets/hamburger.svg";
+import Spotify_LG from "../assets/icons/spotify_lg.svg";
+import Spotify_XS from "../assets/icons/spotify_xs.svg";
+import Hamburger from "../assets/icons/hamburger.svg";
 import {
   Sheet,
   SheetClose,

@@ -1,12 +1,12 @@
 import React from "react";
-import SearchIcon from "../assets/search.svg";
+import SearchIcon from "../assets/icons/search.svg";
 import { cn } from "../lib/utils";
 
 const SearchBar = ({ onSearch, loading, placeholder }) => {
   return (
     <div
       className={cn(
-        "flex items-center justify-center m-4 rounded-md overflow-hidden bg-white bg-opacity-25 ",
+        "flex items-center justify-center m-4 rounded-md overflow-hidden bg-white bg-opacity-25 min-h-[31px]",
         loading ? "pointer-events-none  " : "pointer-events-auto"
       )}
     >

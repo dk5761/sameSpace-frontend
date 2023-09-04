@@ -1,19 +1,20 @@
 import React from "react";
 import ReactPlayer from "react-player";
 import TransparentBtn from "../components/ui/transparentBtn";
-import Menu from "../assets/menu.svg";
-import Prev from "../assets/prev.svg";
-import Play from "../assets/play.svg";
-import Pause from "../assets/pause.svg";
-import Next from "../assets/next.svg";
-import Speaker from "../assets/speaker.svg";
-import Mute from "../assets/mute.svg";
+import Menu from "../assets/icons/menu.svg";
+import Prev from "../assets/icons/prev.svg";
+import Play from "../assets/icons/play.svg";
+import Pause from "../assets/icons/pause.svg";
+import Next from "../assets/icons/next.svg";
+import Speaker from "../assets/icons/speaker.svg";
+import Mute from "../assets/icons/mute.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { prevSong, nextSong } from "../redux/songSlice";
 import { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { cn } from "../lib/utils";
+import Blank from "../assets/images/blank.jpg";
 
 const Player = () => {
   const song = useSelector((state) => state.song.selectedSong);
@@ -22,7 +23,7 @@ const Player = () => {
   const playerRef = useRef(null);
 
   const [isMuted, setIsMuted] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [current, setCurrent] = useState(0);
   const [seeking, setSeeking] = useState(false);
 
@@ -103,7 +104,14 @@ const Player = () => {
               className=" w-10 h-10 xl:min-w-[420px] xl:min-h-[420px] xl:max-w-[517px] xl:max-h-[517px] rounded-xl xl:mt-6 aspect-square object-cover"
             />
           ) : (
-            <div className=" w-10 h-10 xl:w-3/4 xl:aspect-square xl:min-w-[420px] xl:h-full rounded-xl xl:mt-6 bg-slate-400"></div>
+            <div
+              className=" w-10 h-10 xl:w-3/4 xl:aspect-square xl:min-w-[420px] xl:h-full rounded-xl xl:mt-6 relative flex justify-center items-center "
+              style={{ backgroundImage: `url(${Blank})` }}
+            >
+              <div className="text-white font-semibold text-2xl">
+                Select a song to play
+              </div>
+            </div>
           )}
         </div>
         <ReactPlayer

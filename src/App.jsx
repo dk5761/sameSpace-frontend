@@ -9,8 +9,9 @@ import { useQuery } from "@apollo/client";
 import { GET_PLAYLISTS } from "./lib/query";
 import { useSelector } from "react-redux";
 import { getGradientColors } from "./lib/utils";
-import Spotify_XS from "./assets/spotify_xs.svg";
+import Spotify_XS from "./assets/icons/spotify_xs.svg";
 import PulseImage from "./components/ui/pulseImg";
+import { motion } from "framer-motion"; // Import useAnimation
 
 const App = () => {
   const { data, error, loading } = useQuery(GET_PLAYLISTS); // fetching the sidebar data.
@@ -27,17 +28,22 @@ const App = () => {
     );
   }
 
-  // useEffect(() =>{
-
-  // })
-
   return (
     <Router>
-      <div
+      <motion.div
         style={{
           background: `linear-gradient(to left, ${darkerColor}, ${lighterColor}) `,
         }}
         className="flex flex-col sm:flex-row h-screen w-screen max-h-screen overflow-hidden relative "
+        initial={{
+          background: `linear-gradient(to left, ${darkerColor}, ${lighterColor})`,
+          opacity: 0,
+        }}
+        animate={{
+          background: `linear-gradient(to left, ${darkerColor}, ${lighterColor})`,
+          opacity: 1,
+        }}
+        transition={{ duration: 1, background: { duration: 1 } }}
       >
         <Sidebar data={data} />
         <Routes>
@@ -51,7 +57,7 @@ const App = () => {
           />
         </Routes>
         <Player />
-      </div>
+      </motion.div>
     </Router>
   );
 };
