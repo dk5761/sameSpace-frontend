@@ -1,8 +1,23 @@
-# React + Vite
+# Samespace Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Installation
 
-Currently, two official plugins are available:
+Install the app with pnpm
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+  ct into project directory
+  pnpm install
+  pnpm run dev
+```
+
+## Tech Stack
+
+- React.JS
+- Tailwind CSS + ShadCN/UI
+- GraphQL + ApolloClient
+- Framer Motion
+- pnpm + vite.
+
+Application was developed in 20-23 hrs.
+
+Thank You!
