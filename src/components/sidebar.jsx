@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Spotify_LG from "../assets/icons/spotify_lg.svg";
 import Spotify_XS from "../assets/icons/spotify_xs.svg";
 import Hamburger from "../assets/icons/hamburger.svg";
+import Profile from "../assets/images/Profile.png";
 import {
   Sheet,
   SheetClose,
@@ -13,6 +14,8 @@ import {
 } from "../components/ui/sheet";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { cn } from "../lib/utils";
 
 const Sidebar = ({ data }) => {
   const controls = useAnimation();
@@ -31,9 +34,11 @@ const Sidebar = ({ data }) => {
     }
   }, [isMobile, controls]);
 
+  const selectedSong = useSelector((state) => state.song.selectedSong);
+
   return (
     <motion.nav
-      className="w-full sm:w-1/4 sm:min-w-[200px] sm:max-w-[280px] sm:h-screen sm:p-6  p-2 h-[50px]  flex flex-row sm:flex-col justify-between items-start sm:justify-normal sm:items-start fixed sm:relative"
+      className="w-full sm:w-1/4 sm:min-w-[200px] sm:max-w-[280px] sm:h-screen sm:p-6  p-2 h-[50px]  flex flex-row sm:flex-col justify-between items-start sm:justify-normal sm:items-start fixed sm:relative "
       initial={
         isMobile ? { y: "-100%", opacity: 0 } : { x: "-100%", opacity: 0 }
       }
@@ -71,6 +76,13 @@ const Sidebar = ({ data }) => {
               );
             })}
           </aside>
+          <div className={"absolute bottom-4 left-4 "}>
+            <img
+              src={Profile}
+              alt="profile"
+              className="rounded-full w-12 h-12 aspect-square "
+            />
+          </div>
         </SheetContent>
       </Sheet>
       <img src={Spotify_XS} alt="Logo" className="h-[30px] mb-4  sm:hidden" />
@@ -89,6 +101,22 @@ const Sidebar = ({ data }) => {
           );
         })}
       </aside>
+
+      {/* we could also add flex container and give a self end... something like that too */}
+      <div
+        className={cn(
+          "hidden sm:block absolute bottom-4 left-4 xl:mb-0",
+          Object.keys(selectedSong).length > 0
+            ? "sm:mb-[160px] mb-[210px] "
+            : ""
+        )}
+      >
+        <img
+          src={Profile}
+          alt="profile"
+          className="rounded-full w-12 h-12 aspect-square "
+        />
+      </div>
     </motion.nav>
   );
 };

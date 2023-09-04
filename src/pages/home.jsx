@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchColor, setSelectedSong, setSongList } from "../redux/songSlice";
 import ListItemSkeleton from "../components/listItemSkeleton";
 import { useState } from "react";
+import { cn } from "../lib/utils";
 
 const Home = ({ headerData, headerLoading }) => {
   let { id } = useParams();
@@ -69,7 +70,14 @@ const Home = ({ headerData, headerLoading }) => {
           placeholder={"Search Song, Artist"}
         />
         {/* used tailwind utility class to hide the scroll bar */}
-        <div className="overflow-y-scroll h-full scrollbar-hide mb-[210px] sm:mb-[160px] xl:mb-0">
+        <div
+          className={cn(
+            "overflow-y-scroll h-full scrollbar-hide   xl:mb-0",
+            Object.keys(selectedSong).length > 0
+              ? "sm:mb-[160px] mb-[210px]"
+              : ""
+          )}
+        >
           {loading ? (
             // If the loading flag is true, display a loading skeleton.
             Array.from(new Array(3)).map((_, index) => (
